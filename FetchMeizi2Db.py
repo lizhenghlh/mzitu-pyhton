@@ -160,6 +160,23 @@ def get_dir_img_page_url(l, dir_soup):
 
 
 if __name__ == '__main__':
+    #创建meizitu表
+    conn = sqlite3.connect('meizitu.db')
+
+    print "Opened database successfully";
+
+    conn.execute('''CREATE TABLE IF NOT EXISTS GALLERY
+       (ID INTEGER PRIMARY KEY AUTOINCREMENT,
+       NAME           TEXT    NOT NULL,
+       URL            TEXT    NOT NULL);''')
+    print "GALLERY Table created successfully";
+
+    conn.execute('''CREATE TABLE IF NOT EXISTS PHOTO 
+       (ID INTEGER PRIMARY KEY AUTOINCREMENT,
+       GALLERY       INTEGER         NOT NULL,
+       URL           TEXT    NOT NULL);''')
+    print "PHOTO Table created successfully";
+
     parser = argparse.ArgumentParser()
     parser.add_argument("echo")
     # parser.add_argument("url")
